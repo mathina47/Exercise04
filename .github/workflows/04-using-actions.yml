@@ -7,3 +7,4 @@ jobs:
       - name: Checkout Code
         run: echo "checkout the repository code into the current working directory."
       - name: Install Dependencies
+        run: echo "Install Dependencies."
