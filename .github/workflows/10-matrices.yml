@@ -24,7 +24,7 @@ jobs:
       node-versions: ${{matrix.node_versions}}
    - name: Fail if experimental
      run: echo $tag
-     if: tag == expermiental
+     if: $tag == expermiental
       exit 1
    - name: Perform some tests
      run: |
