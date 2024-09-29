@@ -4,16 +4,32 @@ jobs:
  backwards_compatibility_to_the_workflow:
   runs-on: ${{matrix.os}}
   strategy:
+   fail-fast: false
    matrix:
     os: 
      - ubuntu-latest 
      - windows-latest
     node-versions: [v18.20.4, v20.17.0, v21.7.3]
+    include:
+     - os: ubuntu-latest
+       node-versions: v16.20.2
+     - os: ubuntu-latest
+       node-versions: v21.7.3
+       tag: experimental
+    
   steps: 
    - name: Setup node
      uses: actions/setup-node@v4.0.4
+     with:
+      node-versions: ${{matrix.node_versions}}
+   - name: Fail if experimental
+     if: tag == expermiental
+      exit 1
    - name: Perform some tests
      run: |
       echo "Running tests on OS ${{matrix.os}} and NodeJS ${{matrix.node_versions}}"
+   - name: Upload test results
+     run: |
+      echo "Uploading test results"
     
         
