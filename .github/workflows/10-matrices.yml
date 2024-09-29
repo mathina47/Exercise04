@@ -23,8 +23,8 @@ jobs:
      with:
       node-versions: ${{matrix.node_versions}}
    - name: Fail if experimental
-     run: echo $tag
-     if: $tag == expermiental
+     run: echo ${{matrix.tag}}
+     if: ${{matrix.tag}} == 'experimental'
       exit 1
    - name: Perform some tests
      run: |
